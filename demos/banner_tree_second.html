@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Banner de 5 segundos</title>
+    <link rel="icon" href="https://aprendizador.blogspot.com.br/favicon.ico">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta property="og:description" content="Demo de um código para criar um banner que muda a imagem a cada 5 segundos com um efeito leve">
+    <meta property="og:image" content="https://aprendizador.github.io/demos/banner1.png">
+    <meta property="og:title" content="Banner de 5 segundos">
+    <meta name="description" content="Demo de um código para criar um banner que muda a imagem a cada 5 segundos com um efeito leve">
+    <style>
+        .slide{opacity: 0;position: absolute;top: 20px;left:20px;transition: opacity .25s ease-in-out .25s;}
+        .active{opacity: 1 !important;}
+    </style>
+</head>
+<body>
+<img class="slide active" id="sd1" src="banner1.png">
+<img class="slide" id="sd2" src="banner2.png">
+<img class="slide" id="sd3" src="banner3.png">
+<img class="slide" id="sd4" src="banner4.png">
+    Desenvolvido por <a href="aprendizador.blogspot.com">aprendizador.blogspot.com</a> (Aprendizador) código sob licença CC BY-SA
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>
+    var slide = 2;
+    window.setInterval(trocarsd, 5000);
+    function trocarsd() {
+        if ((slide+1)<5 && (slide+1)!==5) {
+            if ((slide-1)!==0) {
+                $("#sd"+(slide-1)).removeClass("active");
+                $("#sd"+slide).addClass("active");
+            }
+            else if ((slide-1)==0){
+            	$("#sd4").removeClass("active");
+                $("#sd"+slide).addClass("active");
+            }
+            slide++;
+        }
+        else if ((slide+1)==5) {
+        	$("#sd3").removeClass("active");
+            $("#sd4").addClass("active");
+            slide = 1;
+        }
+    }
+</script>
+</body>
+</html>
