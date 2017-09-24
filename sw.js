@@ -1,5 +1,4 @@
 'use strict';
-self.addEventListener('push', (event) => {
   console.log('[SW] conectado');
   const title = 'Aprendizador';
   const message = 'Seja bem vindo agora você não vai perder nenhuma de nossas novidades';
@@ -11,8 +10,6 @@ self.addEventListener('push', (event) => {
     badge: iconUrl
   };
   var n = new Notification(title,options);
-});
-
 self.addEventListener('notificationclick', function(event) {
   event.notification.close();
   event.waitUntil(
