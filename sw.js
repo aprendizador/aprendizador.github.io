@@ -1,8 +1,5 @@
 'use strict';
 self.addEventListener('push', (event) => {
-  if (!(self.Notification && self.Notification.permission === 'granted')) {
-    return;
-  }
   console.log('[SW] conectado');
   const title = 'Aprendizador';
   const message = 'Seja bem vindo agora você não vai perder nenhuma de nossas novidades';
@@ -13,8 +10,7 @@ self.addEventListener('push', (event) => {
     icon: iconUrl,
     badge: iconUrl
   };
-
-  event.waitUntil(self.registration.showNotification(title, options));
+  var n = new Notification(title,options);
 });
 
 self.addEventListener('notificationclick', function(event) {
