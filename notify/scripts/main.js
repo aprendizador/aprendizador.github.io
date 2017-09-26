@@ -106,7 +106,6 @@ function subscribeUser() {
       console.log('[USER] Notifições Ativadas', subscription);
       isSubscribed = true;
       updateBtn();
-    }
   })
   .catch(function(err) {
     console.log('[USER] Erro : ', err);
@@ -137,6 +136,5 @@ function unsubscribeUser() {
       console.log('[USER] Notifições desativadas.');
       isSubscribed = false;
       updateBtn();
-    }
   });
 }
