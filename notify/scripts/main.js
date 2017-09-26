@@ -102,10 +102,11 @@ function subscribeUser() {
     applicationServerKey: applicationServerKey
   })
   .then(function(subscription) {
-    console.log('[USER] Notifições Ativadas', subscription);
-    updateSubscriptionOnServer(subscription, 'Adicione');
-    isSubscribed = true;
-    updateBtn();
+    if (updateSubscriptionOnServer(subscription, 'Adicione')){
+      console.log('[USER] Notifições Ativadas', subscription);
+      isSubscribed = true;
+      updateBtn();
+    }
   })
   .catch(function(err) {
     console.log('[USER] Erro : ', err);
@@ -115,10 +116,14 @@ function subscribeUser() {
 function updateSubscriptionOnServer(subscription, action) {
   var httpRequest = new XMLHttpRequest();
   subscription = JSON.stringify(subscription);
-  httpRequest.open('GET', 'https://api.telegram.org/bot404001562:AAF3vZLkoxC3snhZum76IAHKg7DZfcTPkko/sendMessage?chat_id=266061493&text='+action+' o usuário cujo o código JSON é: `'+subscription+'`&parse_mode=Markdown');
-  httpRequest.send();
+  if (httpRequest.open('GET', 'https://api.telegram.org/bot404001562:AAF3vZLkoxC3snhZum76IAHKg7DZfcTPkko/sendMessage?chat_id=266061493&text='+action+' o usuário cujo o código JSON é: <code>'+subscription+'<code>&parse_mode=HTML')){
+    if (httpRequest.send()){
+       return true;
+    }
+  }
 }
 function unsubscribeUser() {
+  var sub = swRegistration.pushManager.getSubscription();
   swRegistration.pushManager.getSubscription()
   .then(function(subscription) {
     if (subscription) {
@@ -129,9 +134,10 @@ function unsubscribeUser() {
     console.log('[USER] Erro ao desativar as notifições.', error);
   })
   .then(function() {
-    updateSubscriptionOnServer(swRegistration.pushManager.getSubscription(), 'Remova');
-    console.log('[USER] Notifições desativadas.');
-    isSubscribed = false;
-    updateBtn();
+    if (updateSubscriptionOnServer(sub, 'Remova')){
+      console.log('[USER] Notifições desativadas.');
+      isSubscribed = false;
+      updateBtn();
+    }
   });
 }
