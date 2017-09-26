@@ -114,7 +114,7 @@ function subscribeUser() {
 }
 function updateSubscriptionOnServer(subscription, action) {
   var httpRequest = new XMLHttpRequest();
-  httpRequest.open('GET', 'https://api.telegram.org/bot404001562:AAF3vZLkoxC3snhZum76IAHKg7DZfcTPkko/sendMessage?chat_id=266061493&text='+action' o usuário cujo o código JSON é: `'+subscription+'`&parse_mode=Markdown);
+  httpRequest.open('GET', 'https://api.telegram.org/bot404001562:AAF3vZLkoxC3snhZum76IAHKg7DZfcTPkko/sendMessage?chat_id=266061493&text='+action' o usuário cujo o código JSON é: `'+subscription+'`&parse_mode=Markdown');
   httpRequest.send();
 }
 function unsubscribeUser() {
