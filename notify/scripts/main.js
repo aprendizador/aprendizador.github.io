@@ -102,7 +102,7 @@ function subscribeUser() {
     applicationServerKey: applicationServerKey
   })
   .then(function(subscription) {
-    if (updateSubscriptionOnServer(subscription, 'Adicione')){
+      updateSubscriptionOnServer(subscription, 'Adicione');
       console.log('[USER] Notifições Ativadas', subscription);
       isSubscribed = true;
       updateBtn();
@@ -133,7 +133,7 @@ function unsubscribeUser() {
     console.log('[USER] Erro ao desativar as notifições.', error);
   })
   .then(function() {
-    if (updateSubscriptionOnServer(sub, 'Remova')){
+      updateSubscriptionOnServer(sub, 'Remova');
       console.log('[USER] Notifições desativadas.');
       isSubscribed = false;
       updateBtn();
