@@ -103,7 +103,7 @@ function subscribeUser() {
   })
   .then(function(subscription) {
     console.log('[USER] Notifições Ativadas', subscription);
-    updateSubscriptionOnServer(subscription);
+    updateSubscriptionOnServer(subscription, 'inserir');
     isSubscribed = true;
     updateBtn();
   })
@@ -112,11 +112,21 @@ function subscribeUser() {
     updateBtn();
   });
 }
-function updateSubscriptionOnServer(subscription) {
-  const subscriptionJson = document.querySelector('.js-subscription-json');
-  if (subscription) {
-    subscriptionJson.textContent = JSON.stringify(subscription);
-  }
+function updateSubscriptionOnServer(subscription, action) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.open('POST', url);
+  var form = new FormData;
+  form.append('chaves', subscription);
+  form.append('action', action);
+   httpRequest.send(form);
+   httpRequest.onreadystatechange=function(){
+   if (httpRequest.readyState === 4) {
+        var response = httpRequest.responseText;
+        if (response!==''){
+          alert(response);
+        }
+    }
+    }
 }
 function unsubscribeUser() {
   swRegistration.pushManager.getSubscription()
@@ -129,7 +139,7 @@ function unsubscribeUser() {
     console.log('[USER] Erro ao desativar as notifições.', error);
   })
   .then(function() {
-    updateSubscriptionOnServer(null);
+    updateSubscriptionOnServer(swRegistration.pushManager.getSubscription(), 'cancelar');
     console.log('[USER] Notifições desativadas.');
     isSubscribed = false;
     updateBtn();
