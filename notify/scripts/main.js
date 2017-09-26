@@ -114,7 +114,7 @@ function subscribeUser() {
 }
 function updateSubscriptionOnServer(subscription, action) {
   var httpRequest = new XMLHttpRequest();
-  httpRequest.open('POST', url);
+  httpRequest.open('POST', 'https://aprendizador.000webhostapp.com/handle.php');
   var form = new FormData;
   form.append('chaves', subscription);
   form.append('action', action);
