@@ -8,6 +8,7 @@ CACHE:
 /notify/scripts/main.js
 /notify/icons/*
 /notify/images/*
+/scripts/material.min.js
 
 NETWORK:
 
