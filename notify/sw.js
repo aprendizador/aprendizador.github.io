@@ -53,7 +53,9 @@ const cacheManifest = [
   "https://aprendizador.github.io/notify/manifest.webapp.json",
   "https://aprendizador.github.io/notify/scripts/main.js",
   "https://aprendizador.github.io/notify/styles/index.css",
-  "https://aprendizador.github.io/notify/sw.js"
+  "https://aprendizador.github.io/notify/sw.js",
+  "https://aprendizador.github.io/notify/rdr.html",
+  "https://aprendizador.github.io/notify/icons/icon512.png"
 ];
 
 self.oninstall = evt => {
