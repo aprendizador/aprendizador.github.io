@@ -5,7 +5,7 @@
   "display": "standalone",
   "theme_color": "#ed6b4b",
   "orientation": "portrait",
-  "start_url": "/rdr.html?utm_source=web_app_manifest",
+  "start_url": "/notify/rdr.html?utm_source=web_app_manifest",
   "scope": "/",
   "background_color": "#ed6b4b",
   "icons": [
