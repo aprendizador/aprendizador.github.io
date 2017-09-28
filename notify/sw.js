@@ -38,3 +38,66 @@ self.addEventListener('notificationclick', function(event) {
   event.waitUntil(
     clients.openWindow('https://127.0.0.1/sw.html')
 )});
+const NAME = 'APR';
+const VERSION = '0.0.1';
+const currentCacheName = NAME + '-v' + VERSION;
+const cacheManifest = [
+  "https://aprendizador.github.io/notify/icons/icon128.png",
+  "https://aprendizador.github.io/notify/icons/icon16.png",
+  "https://aprendizador.github.io/notify/icons/icon192.png",
+  "https://aprendizador.github.io/notify/icons/icon272.png",
+  "https://aprendizador.github.io/notify/icons/icon32.png",
+  "https://aprendizador.github.io/notify/icons/icon60.png",
+  "https://aprendizador.github.io/notify/icons/icon64.png",
+  "https://aprendizador.github.io/notify/icons/icon90.png",
+  "https://aprendizador.github.io/notify/images/icon.png",
+  "https://aprendizador.github.io/notify/manifest.webapp.json",
+  "https://aprendizador.github.io/notify/scripts/main.js",
+  "https://aprendizador.github.io/notify/styles/index.css",
+  "https://aprendizador.github.io/notify/sw.js"
+];
+self.oninstall = evt => {
+  caches.keys().then(cacheNames => {
+    return Promise.all(
+      cacheNames.map(cacheName => {
+        if (cacheName.indexOf(NAME) === -1) {
+          return null;
+        }
+
+        if (cacheName !== currentCacheName) {
+        const urls = cacheManifest.map(url => {
+          return new Request(url, {credentials: 'include'});
+        });
+          evt.waitUntil(
+            caches
+              .open(NAME + '-v' + VERSION)
+              .then(cache => {
+                return cache.addAll(urls);
+              }));
+
+          self.skipWaiting();
+        }
+      })
+    );
+  });
+
+};
+self.onactivate = _ => {
+  caches.keys().then(cacheNames => {
+    return Promise.all(
+      cacheNames.map(cacheName => {
+        if (cacheName.indexOf(NAME) === -1) {
+          return null;
+        }
+
+        if (cacheName !== currentCacheName) {
+          return caches.delete(cacheName);
+        }
+
+        return null;
+      })
+    );
+  });
+
+  self.clients.claim();
+};
