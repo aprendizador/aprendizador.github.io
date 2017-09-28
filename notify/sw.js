@@ -40,7 +40,6 @@ self.addEventListener('notificationclick', function(event) {
 )});
 const NAME = 'APR';
 const VERSION = '0.0.1';
-const currentCacheName = NAME + '-v' + VERSION;
 const cacheManifest = [
   "https://aprendizador.github.io/notify/icons/icon128.png",
   "https://aprendizador.github.io/notify/icons/icon16.png",
@@ -56,33 +55,23 @@ const cacheManifest = [
   "https://aprendizador.github.io/notify/styles/index.css",
   "https://aprendizador.github.io/notify/sw.js"
 ];
+
 self.oninstall = evt => {
-  caches.keys().then(cacheNames => {
-    return Promise.all(
-      cacheNames.map(cacheName => {
-        if (cacheName.indexOf(NAME) === -1) {
-          return null;
-        }
-
-        if (cacheName !== currentCacheName) {
-        const urls = cacheManifest.map(url => {
-          return new Request(url, {credentials: 'include'});
-        });
-          evt.waitUntil(
-            caches
-              .open(NAME + '-v' + VERSION)
-              .then(cache => {
-                return cache.addAll(urls);
-              }));
-
-          self.skipWaiting();
-        }
-      })
-    );
+  const urls = cacheManifest.map(url => {
+    return new Request(url, {credentials: 'include'});
   });
 
+  evt.waitUntil(
+    caches
+      .open(NAME + '-v' + VERSION)
+      .then(cache => {
+        return cache.addAll(urls);
+      }));
+
+  self.skipWaiting();
 };
 self.onactivate = _ => {
+  const currentCacheName = NAME + '-v' + VERSION;
   caches.keys().then(cacheNames => {
     return Promise.all(
       cacheNames.map(cacheName => {
