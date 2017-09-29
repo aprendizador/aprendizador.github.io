@@ -88,13 +88,3 @@ self.addEventListener('activate', function(){
   });
   self.clients.claim();
 });
-  evt.waitUntil(
-    caches
-      .open(NAME + '-v' + VERSION)
-      .then(cache => {
-        console.log('[CACHE] APR Versão: v'+VERSION+' instalada com sucesso');
-        return cache.addAll(urls);
-      }));
-
-  self.skipWaiting();
-};
