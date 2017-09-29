@@ -36,52 +36,49 @@ self.addEventListener('notificationclick', function(event) {
   console.log('[SW] Clicou na notificação.');
   event.notification.close();
   event.waitUntil(
-    clients.openWindow('https://127.0.0.1/sw.html')
+    clients.openWindow('https://aprendizador.github.io/notify/sw.html')
 )});
 const NAME = 'APR';
-const VERSION = '0.0.1';
+const VERSION = '0.0.2';
 const cacheManifest = [
-  "https://aprendizador.github.io/notify/icons/icon128.png",
-  "https://aprendizador.github.io/notify/icons/icon16.png",
-  "https://aprendizador.github.io/notify/icons/icon192.png",
-  "https://aprendizador.github.io/notify/icons/icon272.png",
-  "https://aprendizador.github.io/notify/icons/icon32.png",
-  "https://aprendizador.github.io/notify/icons/icon60.png",
-  "https://aprendizador.github.io/notify/icons/icon64.png",
-  "https://aprendizador.github.io/notify/icons/icon90.png",
-  "https://aprendizador.github.io/notify/images/icon.png",
-  "https://aprendizador.github.io/notify/manifest.webapp.json",
-  "https://aprendizador.github.io/notify/scripts/main.js",
-  "https://aprendizador.github.io/notify/styles/index.css",
-  "https://aprendizador.github.io/notify/sw.js",
-  "https://aprendizador.github.io/notify/rdr.html",
-  "https://aprendizador.github.io/notify/icons/icon512.png"
+  "/notify/icons/icon128.png",
+  "/notify/icons/icon16.png",
+  "/notify/icons/icon192.png",
+  "/notify/icons/icon272.png",
+  "/notify/icons/icon512.png",
+  "/notify/icons/icon32.png",
+  "/notify/icons/icon60.png",
+  "/notify/icons/icon64.png",
+  "/notify/icons/icon90.png",
+  "/notify/images/icon.png",
+  "/notify/manifest.webapp.json",
+  "/notify/scripts/main.js",
+  "/notify/styles/index.css",
+  "/notify/rdr.html",
+  "/notify/",
+  "/notify/index.html"
 ];
-
-self.oninstall = evt => {
-  const urls = cacheManifest.map(url => {
-    return new Request(url, {credentials: 'include'});
-  });
-
-  evt.waitUntil(
-    caches
-      .open(NAME + '-v' + VERSION)
-      .then(cache => {
+self.addEventListener('install', function(event) {
+  const currentCacheName = NAME + '-v' + VERSION;
+    const urls = cacheManifest.map(url => {
+      return new Request(url, {credentials: 'same-origin'});
+    });
+    caches.open(currentCacheName).then(function(cache) {
+        console.log('[CACHE] '+NAME+' Versão: v'+VERSION+' instalada com sucesso');
         return cache.addAll(urls);
-      }));
-
+    });
   self.skipWaiting();
-};
-self.onactivate = _ => {
+});
+self.addEventListener('activate', function(){
   const currentCacheName = NAME + '-v' + VERSION;
   caches.keys().then(cacheNames => {
-    return Promise.all(
-      cacheNames.map(cacheName => {
+    return Promise.all(cacheNames.map(function(cacheName){
         if (cacheName.indexOf(NAME) === -1) {
           return null;
         }
 
         if (cacheName !== currentCacheName) {
+          console.log('[CACHE] '+cacheName+' que estava desatualizado removido com sucesso');
           return caches.delete(cacheName);
         }
 
@@ -89,6 +86,15 @@ self.onactivate = _ => {
       })
     );
   });
-
   self.clients.claim();
+});
+  evt.waitUntil(
+    caches
+      .open(NAME + '-v' + VERSION)
+      .then(cache => {
+        console.log('[CACHE] APR Versão: v'+VERSION+' instalada com sucesso');
+        return cache.addAll(urls);
+      }));
+
+  self.skipWaiting();
 };
