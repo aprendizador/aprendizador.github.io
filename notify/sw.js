@@ -20,6 +20,19 @@
 /* eslint-env browser, serviceworker, es6 */
 
 'use strict';
+const cacheManifest = [
+  "/notify/styles/index.css",
+  "/notify/manifest.webapp.json",
+  "/notify/scripts/main.js",
+  "/notify/icons/icon192.png",
+  "/notify/images/icon.png",
+  "/notify/index.html",
+  "/notify/rdr.html"
+];
+const NAME = 'APR';
+const VERSION = '0.0.4';
+const currentCacheName = NAME + '-v' + VERSION;
+
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Notificação recebida.');
   var content = event.data.text();
@@ -32,45 +45,25 @@ self.addEventListener('push', function(event) {
   };
   event.waitUntil(self.registration.showNotification(title, options));
 });
+
 self.addEventListener('notificationclick', function(event) {
   console.log('[SW] Clicou na notificação.');
   event.notification.close();
   event.waitUntil(
     clients.openWindow('https://aprendizador.github.io/notify/sw.html')
 )});
-const NAME = 'APR';
-const VERSION = '0.0.2';
-const cacheManifest = [
-  "/notify/icons/icon128.png",
-  "/notify/icons/icon16.png",
-  "/notify/icons/icon192.png",
-  "/notify/icons/icon272.png",
-  "/notify/icons/icon512.png",
-  "/notify/icons/icon32.png",
-  "/notify/icons/icon60.png",
-  "/notify/icons/icon64.png",
-  "/notify/icons/icon90.png",
-  "/notify/images/icon.png",
-  "/notify/manifest.webapp.json",
-  "/notify/scripts/main.js",
-  "/notify/styles/index.css",
-  "/notify/rdr.html",
-  "/notify/",
-  "/notify/index.html"
-];
-self.addEventListener('install', function(event) {
-  const currentCacheName = NAME + '-v' + VERSION;
-    const urls = cacheManifest.map(url => {
-      return new Request(url, {credentials: 'same-origin'});
-    });
+
+self.addEventListener('install', function(e) {
+  e.waitUntil(
     caches.open(currentCacheName).then(function(cache) {
-        console.log('[CACHE] '+NAME+' Versão: v'+VERSION+' instalada com sucesso');
-        return cache.addAll(urls);
-    });
+      console.log('[CACHE] '+currentCacheName+' Intalado com sucesso');
+      return cache.addAll(cacheManifest);
+    })
+  );
   self.skipWaiting();
 });
+
 self.addEventListener('activate', function(){
-  const currentCacheName = NAME + '-v' + VERSION;
   caches.keys().then(cacheNames => {
     return Promise.all(cacheNames.map(function(cacheName){
         if (cacheName.indexOf(NAME) === -1) {
@@ -87,4 +80,15 @@ self.addEventListener('activate', function(){
     );
   });
   self.clients.claim();
+});
+
+self.addEventListener('fetch', function(event) {
+  if (event.request.url == 'https://aprendizador.github.io/notify/') {
+    console.info('Service Worker, trabalhando em cache');
+    event.respondWith(fetch(event.request).catch(function(e) {
+      let out = {Gold: 1, Size: -1, Actions: []};
+      return new Response(JSON.stringify(out));
+    }));
+    return;
+  }
 });
