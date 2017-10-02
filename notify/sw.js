@@ -41,6 +41,7 @@ self.addEventListener('push', function(event) {
   const title = content[0];
   const options = {
     body: content[1],
+    tag: content[2],
     icon: 'images/icon.png',
     badge: 'images/icon.png'
   };
@@ -51,7 +52,7 @@ self.addEventListener('notificationclick', function(event) {
   console.log('[SW] Clicou na notificação.');
   event.notification.close();
   event.waitUntil(
-    clients.openWindow('https://aprendizador.github.io/notify/sw.html')
+    clients.openWindow('https://aprendizador.github.io/notify/sw.html?id='+event.notification.tag)
 )});
 
 self.addEventListener('install', function(e) {
