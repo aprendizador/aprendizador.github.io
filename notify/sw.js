@@ -31,7 +31,7 @@ const cacheManifest = [
   "/favicon.ico"
 ];
 const NAME = 'APR';
-const VERSION = '0.0.4';
+const VERSION = '0.0.5';
 const currentCacheName = NAME + '-v' + VERSION;
 
 self.addEventListener('push', function(event) {
