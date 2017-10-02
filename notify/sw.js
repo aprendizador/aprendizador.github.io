@@ -27,7 +27,8 @@ const cacheManifest = [
   "/notify/icons/icon192.png",
   "/notify/images/icon.png",
   "/notify/index.html",
-  "/notify/rdr.html"
+  "/notify/rdr.html",
+  "/favicon.ico"
 ];
 const NAME = 'APR';
 const VERSION = '0.0.4';
