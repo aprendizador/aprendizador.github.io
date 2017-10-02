@@ -20,6 +20,31 @@
 /* eslint-env browser, serviceworker, es6 */
 
 'use strict';
+
+self.addEventListener('push', function(event) {
+  console.log('[SW] Notificação recebida.');
+  var content = event.data.text();
+  content = content.split('|');
+  const title = content[0];
+  const options = {
+    body: content[1],
+    icon: 'images/icon.png',
+    image: content[2],
+    badge: 'images/icon.png',
+    tag: content[3],
+    data: content[4],
+    lang: 'pt_BR'
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+self.addEventListener('notificationclick', function(event) {
+  console.log('[SW] Clicou na notificação.');
+  console.log(event.notification);
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow(event.notification.data+'?user='+event.notification.tag)
+)});
+
 const cacheManifest = [
   "/notify/styles/index.css",
   "/notify/manifest.webapp.json",
@@ -34,27 +59,7 @@ const NAME = 'APR';
 const VERSION = '0.0.5';
 const currentCacheName = NAME + '-v' + VERSION;
 
-self.addEventListener('push', function(event) {
-  console.log('[Service Worker] Notificação recebida.');
-  var content = event.data.text();
-  content = content.split('|');
-  const title = content[0];
-  const options = {
-    body: content[1],
-    tag: content[2],
-    icon: 'images/icon.png',
-    badge: 'images/icon.png'
-  };
-  event.waitUntil(self.registration.showNotification(title, options));
-});
-
-self.addEventListener('notificationclick', function(event) {
-  console.log('[SW] Clicou na notificação.');
-  event.notification.close();
-  event.waitUntil(
-    clients.openWindow('https://aprendizador.github.io/notify/sw.html?id='+event.notification.tag)
-)});
-
+event.data.text();
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(currentCacheName).then(function(cache) {
