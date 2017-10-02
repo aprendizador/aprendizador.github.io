@@ -59,7 +59,6 @@ const NAME = 'APR';
 const VERSION = '0.0.5';
 const currentCacheName = NAME + '-v' + VERSION;
 
-event.data.text();
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(currentCacheName).then(function(cache) {
