@@ -88,12 +88,9 @@ self.addEventListener('activate', function(){
 });
 
 self.addEventListener('fetch', function(event) {
-  if (event.request.url == 'https://aprendizador.github.io/notify/') {
-    console.info('Service Worker, trabalhando em cache');
     event.respondWith(fetch(event.request).catch(function(e) {
-      let out = {Gold: 1, Size: -1, Actions: []};
+      let out = 'Desculpe houve um erro durante a requisção !';
       return new Response(JSON.stringify(out));
     }));
     return;
-  }
 });
