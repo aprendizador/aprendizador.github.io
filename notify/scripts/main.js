@@ -71,9 +71,9 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 }
 function updateBtn() {
   if (Notification.permission === 'denied') {
-    pushButton.textContent = 'Notifições bloqueadas.';
+    pushButton.textContent = 'Notifições bloqueadas por você.';
     pushButton.disabled = true;
-    updateSubscriptionOnServer(null);
+    updateSubscriptionOnServer('Notificações bloqueadas', '');
     return;
   }
   else if (isSubscribed) {
