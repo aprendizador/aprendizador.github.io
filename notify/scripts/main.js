@@ -81,8 +81,9 @@ function updateBtn() {
         var response = xhr.responseText;
         response = JSON.stringify(response);
     }
+  }
     updateSubscriptionOnServer(response['ip'], 'Notificações bloqueadas');
-    return;
+    return '';
   }
   else if (isSubscribed) {
     pushButton.textContent = 'Desativar Notifições';
