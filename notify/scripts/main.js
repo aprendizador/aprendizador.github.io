@@ -150,7 +150,6 @@ function updateSubscriptionOnServer(subscription, action) {
   }
 }
 function unsubscribeUser() {
-  var sub = swRegistration.pushManager.getSubscription();
   swRegistration.pushManager.getSubscription()
   .then(function(subscription) {
     if (subscription) {
@@ -161,7 +160,6 @@ function unsubscribeUser() {
     console.log('[USER] Erro ao desativar as notifições.', error);
   })
   .then(function() {
-      updateSubscriptionOnServer(sub, 'Remova');
       console.log('[USER] Notifições desativadas.');
       isSubscribed = false;
       updateBtn();
