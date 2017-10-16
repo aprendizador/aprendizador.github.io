@@ -55,16 +55,24 @@ const cacheManifest = [
   "/favicon.ico"
 ];
 const NAME = 'APR';
-const VERSION = '0.0.9';
+const VERSION = '0.1.0';
 const currentCacheName = NAME + '-v' + VERSION;
 
 self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open(currentCacheName).then(function(cache) {
-      console.log('[CACHE] '+currentCacheName+' Intalado com sucesso');
-      return cache.addAll(cacheManifest);
-    })
-  );
+    caches.keys().then(cacheNames => {
+    return Promise.all(cacheNames.map(function(cacheName){
+
+        if (cacheName !== currentCacheName) {
+          caches.open(currentCacheName).then(function(cache) {
+          console.log('[CACHE] '+currentCacheName+' Intalado com sucesso');
+          return cache.addAll(cacheManifest);
+        })
+        }
+        return null;
+      })
+    );
+  }));
   self.skipWaiting();
 });
 
@@ -89,8 +97,9 @@ self.addEventListener('activate', function(){
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(fetch(event.request).catch(function(e) {
+      console.info('[SW] trabalhando em cache');
       let out = 'Desculpe houve um erro durante a requisção !';
-      return new Response(JSON.stringify(out));
+      return new Response(out);
     }));
     return;
 });
