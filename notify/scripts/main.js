@@ -31,7 +31,8 @@ this.actionElement_.addEventListener("click",this.actionHandler_),this.setAction
 
 'use strict';
 
-const applicationServerPublicKey = 'BMFvHKS6_S2qScf6WZ35oNPpEuNaVjwK5qXvoYtlOm1luD8anvCoxH2jXtjPHW8WIz0vrA4hrgCFlR7-L6pKvo8';
+const applicationServerPublicKey = 'BAPNXYBfuu36De9WTYN2I_p36uAu55Ysr3VhB1CucGZjaWIRyvRmktU-FhGxZ6oRg63aY6pGrdO1l-ljm7w9LzU
+';
 
 const pushButton = document.querySelector('.js-push-btn');
 
