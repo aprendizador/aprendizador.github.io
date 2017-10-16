@@ -41,7 +41,7 @@ self.addEventListener('notificationclick', function(event) {
   console.log('[SW] Clicou na notificação.');
   event.notification.close();
   event.waitUntil(
-     clients.openWindow(event.notification.data+'?utm_source=web-push-notification&utm_campaign=article-'+event.notification.title+'&utm_medium=user-'+event.notification.tag)
+     clients.openWindow(event.notification.data+'?utm_source=web-push-notification&utm_campaign=article-'+event.notification.title+'&utm_content=user-'+event.notification.tag)
 )});
 
 const cacheManifest = [
@@ -55,7 +55,7 @@ const cacheManifest = [
   "/favicon.ico"
 ];
 const NAME = 'APR';
-const VERSION = '0.1.1';
+const VERSION = '0.1.2';
 const currentCacheName = NAME + '-v' + VERSION;
 
 self.addEventListener('install', function(e) {
