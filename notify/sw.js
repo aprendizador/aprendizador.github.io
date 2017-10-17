@@ -17,10 +17,6 @@
 * 
 */
 
-/* eslint-env browser, serviceworker, es6 */
-
-'use strict';
-
 self.addEventListener('push', function(event) {
   console.log('[SW] Notificação recebida.');
   var content = event.data.text();
@@ -55,7 +51,7 @@ const cacheManifest = [
   "/favicon.ico"
 ];
 const NAME = 'APR';
-const VERSION = '0.1.0';
+const VERSION = '0.1.1';
 const currentCacheName = NAME + '-v' + VERSION;
 
 self.addEventListener('install', function(e) {
