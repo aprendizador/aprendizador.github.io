@@ -51,7 +51,7 @@ const cacheManifest = [
   "/favicon.ico"
 ];
 const NAME = 'APR';
-const VERSION = '0.1.1';
+const VERSION = '0.1.2';
 const currentCacheName = NAME + '-v' + VERSION;
 
 self.addEventListener('install', function(e) {
