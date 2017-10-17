@@ -38,6 +38,16 @@ const pushButton = document.querySelector('.js-push-btn');
 let isSubscribed = false;
 let swRegistration = null;
 
+pushButton.addEventListener('click', function() {
+    pushButton.disabled = 'true';
+    if (isSubscribed) {
+      unsubscribeUser();
+    }
+    else{
+      subscribeUser();
+    }
+});
+
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
@@ -85,15 +95,6 @@ function updateBtn() {
   }
 }
 function initialiseUI() {
-  pushButton.addEventListener('click', function() {
-    pushButton.disabled = true;
-    if (isSubscribed) {
-      unsubscribeUser();
-    }
-    else{
-      subscribeUser();
-    }
-  });
   swRegistration.pushManager.getSubscription()
   .then(function(subscription) {
     isSubscribed = !(subscription === null);
