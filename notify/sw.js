@@ -51,7 +51,7 @@ const cacheManifest = [
   "/favicon.ico"
 ];
 const NAME = 'APR';
-const VERSION = '0.1.3';
+const VERSION = '0.1.4';
 const currentCacheName = NAME + '-v' + VERSION;
 
 self.addEventListener('install', function(e) {
@@ -95,7 +95,7 @@ self.addEventListener('fetch', function(event) {
   if (event.request.url == 'https://aprendizador.github.io/notify/styles/index.css'){
     event.respondWith(fetch(event.request).catch(function(e) {
       console.info('[SW] trabalhando em cache');
-      let out = ".mdl-button--raised {background: rgba(158,158,158,.2);box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);}\n.mdl-button {box-sizing: border-box;align-items: flex-start;background: 0 0;border: none;border-radius: 2px;color: #000;position: relative;height: 36px;margin: 0;min-width: 64px;padding: 0 16px;display: inline-block;font-family: 'Roboto','Helvetica','Arial',sans-serif;font-size: 14px;font-weight: 500;text-transform: uppercase;letter-spacing: 0;overflow: hidden;will-change: box-shadow;transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);outline: none;cursor: pointer;text-decoration: none;text-align: center;line-height: 36px;vertical-align: middle;text-shadow: none;text-indent: 0px;font: 13.3333px Arial;word-spacing: normal;text-rendering: auto;}\n.mdl-button{-webkit-tap-highlight-color: rgba(255,255,255,0);}\nbutton {padding: 1px 6px;}\nhtml, body {font-family: 'Helvetica','Arial',sans-serif;font-size: 14px;font-weight: 400;line-height: 20px;margin: 0;padding: 0;}\nhtml {color: rgba(0,0,0,.87);}\n::selection {background: #b3d4fc;text-shadow: none;}h1{line-height: 2.3em;font-size: 2em;font-weight: 500;}\n.center{text-align: center;}";
+      let out = ".mdl-button--raised {background: rgba(158,158,158,.2);box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);}\n.mdl-button {box-sizing: border-box;align-items: flex-start;background: 0 0;border: none;border-radius: 2px;color: #000;position: relative;height: 36px;margin: 0;min-width: 64px;padding: 0 16px;display: inline-block;font-family: 'Roboto','Helvetica','Arial',sans-serif;font-size: 14px;font-weight: 500;text-transform: uppercase;letter-spacing: 0;overflow: hidden;will-change: box-shadow;transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);outline: none;cursor: pointer;text-decoration: none;text-align: center;line-height: 36px;vertical-align: middle;text-shadow: none;text-indent: 0px;font: 13.3333px Arial;word-spacing: normal;text-rendering: auto;}\n.mdl-button{-webkit-tap-highlight-color: rgba(255,255,255,0);}\nbutton {padding: 1px 6px;}\nhtml, body {font-family: 'Helvetica','Arial',sans-serif;font-size: 14px;font-weight: 400;line-height: 20px;margin: 0;padding: 0;}\nhtml {color: rgba(0,0,0,.87);}\n::selection {background: #b3d4fc;text-shadow: none;}h1{line-height: 1em;font-size: 2em;font-weight: 500;}\n.center{text-align: center;}";
       return new Response(out, {headers:{"Content-Type" : "text/css" }});
       }));
   }
