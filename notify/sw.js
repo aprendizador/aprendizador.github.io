@@ -34,7 +34,7 @@ self.addEventListener('push', function(event) {
   event.waitUntil(self.registration.showNotification(title, options));
 });
 self.addEventListener('notificationclick', function(event) {
-  console.log('[SW] Clicou na notificação.');
+  console.log('[USER] Clicou na notificação.');
   event.notification.close();
   event.waitUntil(
      clients.openWindow(event.notification.data+'?utm_source=web-push-notification&utm_campaign=article-'+event.notification.title+'&utm_content=user-'+event.notification.tag)
@@ -92,10 +92,25 @@ self.addEventListener('activate', function(){
 });
 
 self.addEventListener('fetch', function(event) {
+  if (event.request.url == 'https://aprendizador.github.io/notify/scripts/main.js'){
     event.respondWith(fetch(event.request).catch(function(e) {
       console.info('[SW] trabalhando em cache');
-      let out = 'Desculpe houve um erro durante a requisção !';
+      let out = "var btn = document.querySelector('.js-reload');\nbtn.addEventListener('click', function(event) {\nwindow.reload();\n});";
       return new Response(out);
     }));
-    return;
+  }
+  else if (event.request.url == 'https://aprendizador.github.io/notify/styles/index.css'){
+    event.respondWith(fetch(event.request).catch(function(e) {
+      console.info('[SW] trabalhando em cache');
+      let out = ".mdl-button--raised {background: rgba(158,158,158,.2);box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);}.mdl-button {box-sizing: border-box;align-items: flex-start;background: 0 0;border: none;border-radius: 2px;color: #000;position: relative;height: 36px;margin: 0;min-width: 64px;padding: 0 16px;display: inline-block;font-family: 'Roboto','Helvetica','Arial',sans-serif;font-size: 14px;font-weight: 500;text-transform: uppercase;letter-spacing: 0;overflow: hidden;will-change: box-shadow;transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);outline: none;cursor: pointer;text-decoration: none;text-align: center;line-height: 36px;vertical-align: middle;text-shadow: none;text-indent: 0px;font: 13.3333px Arial;word-spacing: normal;text-rendering: auto;}.mdl-button{-webkit-tap-highlight-color: rgba(255,255,255,0);    }button {padding: 1px 6px;}html, body {font-family: 'Helvetica','Arial',sans-serif;font-size: 14px;font-weight: 400;line-height: 20px;margin: 0;padding: 0;}html {color: rgba(0,0,0,.87);}::selection {background: #b3d4fc;text-shadow: none;}";
+      return new Response(out);
+  }
+  else {
+    event.respondWith(fetch(event.request).catch(function(e) {
+      console.info('[SW] trabalhando em cache');
+      let out = "<html>\n<head>\n<title>Notificações | Aprendizador</title>\n<meta charset='utf-8'>\n<meta http-equiv='X-UA-Compatible' content='IE=edge'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n</head>\n<link rel='stylesheet' type='text/css' href='styles/index.css'>\n<link rel='manifest' href='manifest.webapp.json'>\n<body>\n<h1>Ops! você está sem conexão com a internet</h1>\n".'<button class="js-reload mdl-button mdl-button--raised">Recarregar</button>'."\n</body>";
+      return new Response(out);
+    }));
+  }
+  return;
 });
