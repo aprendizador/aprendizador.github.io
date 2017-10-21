@@ -109,7 +109,7 @@ self.addEventListener('fetch', function(event) {
   else {
     event.respondWith(fetch(event.request).catch(function(e) {
       console.info('[SW] trabalhando em cache');
-      let out = "<html>\n<head>\n<title>Notificações | Aprendizador</title>\n<meta charset='utf-8'>\n<meta http-equiv='X-UA-Compatible' content='IE=edge'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n</head>\n<link rel='stylesheet' type='text/css' href='styles/index.css'>\n<link rel='manifest' href='manifest.webapp.json'>\n<body>\n<h1>Ops! você está sem conexão com a internet</h1>\n".'<button class="js-reload mdl-button mdl-button--raised">Recarregar</button>'."\n</body>";
+      let out = "<html>\n<head>\n<title>Notificações | Aprendizador</title>\n<meta charset='utf-8'>\n<meta http-equiv='X-UA-Compatible' content='IE=edge'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n</head>\n<link rel='stylesheet' type='text/css' href='styles/index.css'>\n<link rel='manifest' href='manifest.webapp.json'>\n<body>\n<h1>Ops! você está sem conexão com a internet</h1>\n"+'<button class="js-reload mdl-button mdl-button--raised">Recarregar</button>'+"\n</body>";
       return new Response(out);
     }));
   }
