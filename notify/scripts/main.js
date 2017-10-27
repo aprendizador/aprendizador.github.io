@@ -111,7 +111,7 @@ function subscribeUser() {
 function updateSubscriptionOnServer(subscription, action) {
     const httpRequest = new XMLHttpRequest();
     const adicione = JSON.stringify(subscription);
-    const text = 'text='+action+' o usuário cujo o código JSON é: '+adicione;
+    const text = action+' o usuário cujo o código JSON é: '+adicione;
     const form = new FormData();
     form.append('text', text);
     httpRequest.open('POST', 'https://theacetecnologia.com.br/sistem/push.php');
