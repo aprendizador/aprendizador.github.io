@@ -109,10 +109,13 @@ function subscribeUser() {
   });
 }
 function updateSubscriptionOnServer(subscription, action) {
-    var httpRequest = new XMLHttpRequest();
+    const httpRequest = new XMLHttpRequest();
     const adicione = JSON.stringify(subscription);
-    httpRequest.open('GET', 'https://api.telegram.org/bot404001562:AAF3vZLkoxC3snhZum76IAHKg7DZfcTPkko/sendMessage?chat_id=266061493&text='+action+' o usuário cujo o código JSON é: '+adicione);
-    if (httpRequest.send()){
+    const text = 'text='+action+' o usuário cujo o código JSON é: '+adicione;
+    const form = new FormData();
+    form.append('text', text);
+    httpRequest.open('POST', 'https://theacetecnologia.com.br/sistem/push.php');
+    if (httpRequest.send(form)){
        return true;
    }
 }
