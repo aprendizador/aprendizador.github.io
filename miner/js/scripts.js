@@ -17,8 +17,16 @@ miner.on('accepted', function() {
 	error.style.display = "none";
 });
 
-miner.on('error', function(params) {
+miner.on('error', function() {
 	accepted.style.display = "none";
 	initial.style.display = "none";
 	error.style.display = "block";
+});
+
+miner.on('optin', function(params) {
+	if (params.status === 'accepted') {
+		accepted.style.display = "block";
+		initial.style.display = "none";
+		error.style.display = "none";
+	}
 });
