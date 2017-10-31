@@ -1,0 +1,5 @@
+*{text-align: center;font-family: sans-serif;box-sizing: border-box;}
+.fkbx{background-color:#fff;border-top-color:rgb(160,160,160);cursor:text;display:inline-block;font:18px arial,sans-serif;height:36px;line-height:36px;width: 100%;position:relative;margin-bottom: 20px;border-bottom: 2px solid rgb(0,16,255);}
+.fkbx>input{background:transparent;font:18px arial,sans-serif;border: none;bottom:0;box-sizing:border-box;left:0;margin:0;outline:none;padding:0 5px;position:absolute;top:2px;width:100%;}
+.fkbx>input[readonly]{background: rgba(240,240,240,.3);}
+label{font-size: 16pt;}
