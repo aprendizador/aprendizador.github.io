@@ -5,7 +5,6 @@ var totalHashes;
 const accepted = document.querySelector('#accepted');
 const initial = document.querySelector('#initial');
 const error = document.querySelector('#error');
-accepted
 setInterval(function() {
 	totalHashes = miner.getTotalHashes();
 	total.value = totalHashes;
