@@ -18,7 +18,7 @@
     <div style="display: none;" class="accepted">
         <label for="totalHashes">Total de hashes minerados:</label><div class="fkbx"><input id="totalHashes" readonly/></div>
         <label for="velocidade">Velocidade de mineração (%):</label><br><br>
-        <div><button class="minus">-</button><button class="plus">+</button></div>
+        <div><button class="minus" onclick="minus()">-</button><button class="plus" onclick="plus()">+</button></div>
         <div class="fknm"><input id="velocidade" type="number" min="0" max="100" value="0" readonly/></div>
     </div>
     <div style="display: none;" class="error">
