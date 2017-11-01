@@ -26,7 +26,6 @@ minus.on('click', function () {
 });
 
 miner.on('accepted', function() {
-    velocidade.value = getThreads();
 	accepted.style.display = "block";
 	initial.style.display = "none";
 	error.style.display = "none";
@@ -40,7 +39,6 @@ miner.on('error', function() {
 
 miner.on('optin', function(params) {
 	if (params.status === 'accepted') {
-        velocidade.value = getThreads();
 		accepted.style.display = "block";
 		initial.style.display = "none";
 		error.style.display = "none";
@@ -72,4 +70,5 @@ function minus() {
 setInterval(function() {
     totalHashes = miner.getTotalHashes();
     total.value = totalHashes;
+    velocidade.value = getThreads();
 }, 1000);
