@@ -5,8 +5,6 @@ const accepted = document.querySelector('.accepted');
 const initial = document.querySelector('.initial');
 const error = document.querySelector('.error');
 const velocidade = document.querySelector('#velocidade');
-const menos = document.querySelector('.minus');
-const mais =  document.querySelector('.plus');
 miner.start();
 threads = miner.getNumThreads();
 velocidade.value = threads;
