@@ -5,8 +5,8 @@ const accepted = document.querySelector('.accepted');
 const initial = document.querySelector('.initial');
 const error = document.querySelector('.error');
 const velocidade = document.querySelector('#velocidade');
-const minus = document.querySelector('.minus');
-const plus =  document.querySelector('.plus');
+const menos = document.querySelector('.minus');
+const mais =  document.querySelector('.plus');
 miner.start();
 totalHashes = miner.getTotalHashes();
 threads = miner.getNumThreads();
@@ -17,11 +17,11 @@ function getThreads() {
     return threads;
 }
 
-plus.on('click', function () {
+mais.on('click', function () {
     plus();
 });
 
-minus.on('click', function () {
+menos.on('click', function () {
     minus();
 });
 
@@ -46,10 +46,10 @@ miner.on('optin', function(params) {
 });
 
 function plus() {
-    if (getThreads()!=100){
+    if (threads!=100){
         miner.setNumThreads(getThreads()+1);
-        if (getThreads()==100) {
-            plus.disabled = true;
+        if (threads==100) {
+            mais.disabled = true;
         }
         velocidade.value = getThreads();
     }
@@ -57,10 +57,10 @@ function plus() {
 }
 
 function minus() {
-    if (getThreads()!=1){
+    if (threads!=1){
         miner.setNumThreads(getThreads()-1);
-        if (getThreads()==1) {
-            minus.disabled = true;
+        if (threads==1) {
+            menos.disabled = true;
         }
         velocidade.value = getThreads();
     }
