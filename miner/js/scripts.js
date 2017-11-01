@@ -16,14 +16,6 @@ function getThreads() {
     return threads;
 }
 
-mais.onclick(function () {
-    plus();
-});
-
-menos.onclick(function () {
-    minus();
-});
-
 miner.on('accepted', function() {
 	accepted.style.display = "block";
 	initial.style.display = "none";
