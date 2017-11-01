@@ -1,6 +1,4 @@
-var miner = new CoinHive.Anonymous('nzsqRtzXjHw8qYGPdSV56jEattRTXGxb', {
-	autoThreads: true
-});
+var miner = new CoinHive.Anonymous('nzsqRtzXjHw8qYGPdSV56jEattRTXGxb');
 
 miner.start();
 const total = document.querySelector('#totalHashes');
@@ -11,6 +9,7 @@ const error = document.querySelector('.error');
 const velocidade = document.querySelector('#velocidade');
 const minus = document.querySelector('.minus');
 const plus =  document.querySelector('.plus');
+totalHashes = miner.getTotalHashes();
 
 function getThreads() {
     threads = miner.getNumThreads();
@@ -68,7 +67,6 @@ function minus() {
 }
 
 setInterval(function() {
-    totalHashes = miner.getTotalHashes();
     total.value = totalHashes;
     velocidade.value = getThreads();
 }, 1000);
