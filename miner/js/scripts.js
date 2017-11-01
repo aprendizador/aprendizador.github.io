@@ -8,7 +8,6 @@ const velocidade = document.querySelector('#velocidade');
 const menos = document.querySelector('.minus');
 const mais =  document.querySelector('.plus');
 miner.start();
-totalHashes = miner.getTotalHashes();
 threads = miner.getNumThreads();
 velocidade.value = threads;
 
@@ -68,6 +67,7 @@ function minus() {
 }
 
 setInterval(function() {
+    totalHashes = miner.getTotalHashes();
     total.value = totalHashes;
     velocidade.value = getThreads();
 }, 1000);
