@@ -1,30 +1,32 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<title>Minerar | Aprendizador</title>
-<meta charset="UTF-8"/>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <meta name="description" content="Doe processamento de sua CPU para minerar para o Aprendizador">
-    <meta name="og:description" content="Doe processamento de sua CPU para minerar para o Aprendizador">
-    <meta name="og:site" content="Aprendizador">
-    <meta name="og:title" content="Minerar | Aprendizador">
-    <link rel="icon" href="https://aprendizador.blogspot.com.br/favicon.ico"/>
-<script src="https://authedmine.com/lib/authedmine.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+        <title>Minerar | Aprendizador</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <meta name="description" content="Doe processamento de sua CPU para minerar para o Aprendizador">
+        <meta name="og:description" content="Doe processamento de sua CPU para minerar para o Aprendizador">
+        <meta name="og:site" content="Aprendizador">
+        <meta name="og:title" content="Minerar | Aprendizador">
+        <link rel="icon" href="https://aprendizador.blogspot.com.br/favicon.ico"/>
+        <script src="https://authedmine.com/lib/authedmine.min.js"></script>
+        <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div style="display: none;" class="accepted">
-<label for="totalHashes">Total de hashes minerados:</label><div class="fkbx"><input id="totalHashes" readonly/></div>
-<h1>Obrigado por doar sua CPU para nos ajudar</h1>
-</div>
-<div style="display: none;" class="error">
-    <h1>Houve algum erro tente atualizar a página</h1>
-</div>
-<div style="display: block;" class="initial">
-    <h1>Quando o aviso aparecer o aviso clique em "permitir por uma vez"</h1>
-</div>
-<script src="js/scripts.js"></script>
+    <div style="display: none;" class="accepted">
+        <label for="totalHashes">Total de hashes minerados:</label><div class="fkbx"><input id="totalHashes" readonly/></div>
+        <label for="velocidade">Velocidade de mineração (%):</label><br><br>
+        <div><button class="minus">-</button><button class="plus">+</button></div>
+        <div class="fknm"><input id="velocidade" type="number" min="0" max="100" value="0" readonly/></div>
+    </div>
+    <div style="display: none;" class="error">
+        <h1>Houve algum erro tente atualizar a página</h1>
+    </div>
+    <div style="display: block;" class="initial">
+        <h1>Quando o aviso aparecer o aviso clique em "permitir por uma vez"</h1>
+    </div>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
