@@ -29,4 +29,4 @@ function refresh(response) {
 
 request();
 
-setInterval(request, 1000);
+setInterval(request, 5000);
