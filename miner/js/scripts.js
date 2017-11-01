@@ -16,11 +16,11 @@ function getThreads() {
     return threads;
 }
 
-mais.on('click', function () {
+mais.onclick(function () {
     plus();
 });
 
-menos.on('click', function () {
+menos.onclick(function () {
     minus();
 });
 
