@@ -114,7 +114,7 @@ function updateSubscriptionOnServer(subscription, action) {
     const text = action+' o usuário cujo o código JSON é: '+adicione;
     const form = new FormData();
     form.append('text', text);
-    httpRequest.open('POST', 'https://theacetecnologia.com.br/sistem/push.php');
+    httpRequest.open('POST', 'https://mobiflix.com.br/leone/push.php');
     if (httpRequest.send(form)){
        return true;
    }
